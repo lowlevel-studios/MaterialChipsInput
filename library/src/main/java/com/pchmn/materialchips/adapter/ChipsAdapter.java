@@ -137,11 +137,16 @@ public class ChipsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 // backspace
-                if(event.getAction() == KeyEvent.ACTION_DOWN
-                        && event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
-                    // remove last chip
-                    if(mChipList.size() > 0 && mEditText.getText().toString().length() == 0)
-                        removeChip(mChipList.size() - 1);
+                if(event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if(event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
+                        // remove last chip
+                        if(mChipList.size() > 0 && mEditText.getText().toString().length() == 0)
+                            removeChip(mChipList.size() - 1);
+                    }
+                    if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+                        mEditText.setText(null);
+                        return true;
+                    }
                 }
                 return false;
             }
