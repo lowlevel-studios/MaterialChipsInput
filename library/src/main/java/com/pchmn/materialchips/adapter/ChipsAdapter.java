@@ -144,8 +144,10 @@ public class ChipsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             removeChip(mChipList.size() - 1);
                     }
                     if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-                        mEditText.setText(null);
-                        return true;
+                        if(mEditText.getText().toString().length() > 0) {
+                            mEditText.setText(null);
+                            return true;
+                        }
                     }
                 }
                 return false;
